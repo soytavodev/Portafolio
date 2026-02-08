@@ -1,0 +1,9 @@
+<?php
+// config/db.php.example - COPIA ESTO A db.php Y PON TUS DATOS
+$servidor   = "localhost";
+$usuario    = "TU_USUARIO";
+$contrasena = "TU_CONTRASEÑA";
+$base_datos = "conversordd_db";
+
+$conn = new mysqli($servidor, $usuario, $contrasena, $base_datos);
+?>
