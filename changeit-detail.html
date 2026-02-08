@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChangeIt! — Detalles Técnicos</title>
+    <style>
+        :root {
+            --bg: #1a1a1a;
+            --card: #242424;
+            --accent: #ff4444;
+            --text: #e0e0e0;
+        }
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        
+        /* VENTANA DEL CARRUSEL - ESTILO ORIGINAL MANTENIDO */
+        .carousel-viewport {
+            position: relative;
+            width: 100%;
+            height: 500px; 
+            overflow: hidden;
+            border-radius: 12px;
+            border: 1px solid #333;
+            background: #000;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .slides-container {
+            display: flex;
+            height: 100%;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 100%; 
+        }
+
+        .slide {
+            min-width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* AJUSTE DE IMAGEN: Ahora ocupa todo el ancho y alto disponible */
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Cambia a 'cover' solo si quieres que llene sin bordes negros, pero 'contain' con width 100% es lo más seguro para capturas */
+            display: block;
+        }
+        
+        .nav-btn {
+            position: absolute; 
+            top: 50%; 
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.8); 
+            color: var(--accent);
+            border: 2px solid var(--accent); 
+            padding: 12px 18px;
+            cursor: pointer; 
+            border-radius: 50%; 
+            font-weight: bold;
+            font-size: 20px;
+            z-index: 10;
+            transition: 0.3s;
+        }
+        .nav-btn:hover { background: var(--accent); color: #000; }
+        .prev { left: 15px; }
+        .next { right: 15px; }
+
+        .info-section { margin-top: 40px; }
+        .tag {
+            display: inline-block;
+            padding: 5px 15px;
+            background: #333;
+            border-left: 3px solid var(--accent);
+            margin: 0 10px 10px 0;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        h1 { color: #fff; margin-bottom: 5px; }
+        .back-link { color: var(--accent); text-decoration: none; font-weight: bold; }
+        
+        .btn-repo {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 25px;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .btn-repo:hover { background: var(--accent); color: #000; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <p><a href="index.html" class="back-link">← Volver al inicio</a></p>
+    <h1>ChangeIt! — Herramienta de Conversión</h1>
+    
+    <div style="margin-bottom: 25px;">
+        <span class="tag">PHP / Backend</span>
+        <span class="tag">MySQL Database</span>
+        <span class="tag">JSON API Integration</span>
+    </div>
+
+    <div class="carousel-viewport">
+        <button class="nav-btn prev" onclick="plusSlides(-1)">❮</button>
+        <button class="nav-btn next" onclick="plusSlides(1)">❯</button>
+        
+        <div class="slides-container" id="slider">
+            <div class="slide"><img src="assets/captura1.png" alt="Interfaz Principal"></div>
+            <div class="slide"><img src="assets/captura2.png" alt="Lógica de Conversión"></div>
+            <div class="slide"><img src="assets/captura3.png" alt="Terminal MySQL"></div>
+        </div>
+    </div>
+
+    <div class="info-section">
+        <h3>Análisis del Proyecto</h3>
+        <p>Sistema desarrollado para procesar conversiones de divisas en tiempo real. Utiliza <strong>MySQL</strong> para la persistencia de datos, permitiendo auditar el historial de consultas realizadas por el usuario.</p>
+        
+        <ul style="color: #ccc;">
+            <li>Consumo de ExchangeRate-API mediante PHP.</li>
+            <li>Estructura de datos optimizada en motor MySQL.</li>
+            <li>Interfaz minimalista enfocada en la legibilidad.</li>
+        </ul>
+
+        <a href="https://github.com/TU_USUARIO/ChangeIt" class="btn-repo" target="_blank">Explorar Código Fuente</a>
+    </div>
+</div>
+
+<script>
+    let currentIndex = 0;
+    const slider = document.getElementById('slider');
+    const totalSlides = document.querySelectorAll('.slide').length;
+
+    function plusSlides(n) {
+        currentIndex += n;
+        if (currentIndex >= totalSlides) currentIndex = 0;
+        if (currentIndex < 0) currentIndex = totalSlides - 1;
+        updateSlider();
+    }
+
+    function updateSlider() {
+        slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
+</script>
+
+</body>
+</html>
