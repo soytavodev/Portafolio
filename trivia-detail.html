@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GuessIt — Detalles Técnicos</title>
+    <style>
+        /* Mismos estilos que ChangeIt para consistencia visual */
+        :root { --bg: #1a1a1a; --card: #242424; --accent: #ffb900; /* Amarillo Clash */ --text: #e0e0e0; }
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        
+        .carousel-viewport {
+            position: relative; width: 100%; height: 500px; overflow: hidden;
+            border-radius: 12px; border: 1px solid #333; background: #000;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .slides-container { display: flex; height: 100%; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); width: 100%; }
+        .slide { min-width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; }
+        /* Ajuste para que las capturas se vean completas */
+        .slide img { width: 100%; height: 100%; object-fit: contain; display: block; }
+        
+        .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.8); color: var(--accent); border: 2px solid var(--accent); padding: 12px 18px; cursor: pointer; border-radius: 50%; font-weight: bold; font-size: 20px; z-index: 10; transition: 0.3s; }
+        .nav-btn:hover { background: var(--accent); color: #000; }
+        .prev { left: 15px; } .next { right: 15px; }
+
+        .info-section { margin-top: 40px; }
+        .tag { display: inline-block; padding: 5px 15px; background: #333; border-left: 3px solid var(--accent); margin: 0 10px 10px 0; font-size: 0.8rem; font-weight: bold; }
+        h1 { color: #fff; margin-bottom: 5px; }
+        .back-link { color: var(--accent); text-decoration: none; font-weight: bold; }
+        
+        .btn-play {
+            display: inline-block; margin-top: 25px; padding: 12px 25px;
+            border: 2px solid var(--accent); background: var(--accent); color: #000;
+            text-decoration: none; border-radius: 6px; font-weight: bold; transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 185, 0, 0.3);
+        }
+        .btn-play:hover { background: transparent; color: var(--accent); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <p><a href="index.html" class="back-link">← Volver al inicio</a></p>
+    <h1>GuessIt — Trivia Challenge</h1>
+    
+    <div style="margin-bottom: 25px;">
+        <span class="tag">PHP Nativo</span>
+        <span class="tag">MySQL Relacional</span>
+        <span class="tag">CSS Skeuomorphism</span>
+    </div>
+
+    <div class="carousel-viewport">
+        <button class="nav-btn prev" onclick="plusSlides(-1)">❮</button>
+        <button class="nav-btn next" onclick="plusSlides(1)">❯</button>
+        
+        <div class="slides-container" id="slider">
+            <div class="slide"><img src="assets/captura_home.png" alt="Inicio GuessIt"></div>
+            <div class="slide"><img src="assets/captura_game.png" alt="Partida en curso"></div>
+            <div class="slide"><img src="assets/captura_ranking.png" alt="Tabla de clasificación"></div>
+        </div>
+    </div>
+
+    <div class="info-section">
+        <h3>Análisis del Proyecto</h3>
+        <p>Aplicación full-stack de preguntas y respuestas competitivas. Implementa un sistema de <strong>Autenticación Segura</strong> (Login/Registro) y gestión de sesiones persistentes sin depender de frameworks.</p>
+        
+        <ul style="color: #ccc;">
+            <li><strong>Arquitectura:</strong> MVC manual con PHP 8.2 y PDO para máxima seguridad.</li>
+            <li><strong>Datos:</strong> +50 preguntas aleatorias y Ranking Global SQL calculado en tiempo real.</li>
+            <li><strong>Diseño:</strong> Interfaz "Clash Theme" con efectos 3D desarrollados en CSS puro.</li>
+        </ul>
+
+        <a href="#" class="btn-play">🎮 JUGAR DEMO (Próximamente)</a>
+    </div>
+</div>
+
+<script>
+    let currentIndex = 0;
+    const slider = document.getElementById('slider');
+    const totalSlides = document.querySelectorAll('.slide').length;
+
+    function plusSlides(n) {
+        currentIndex += n;
+        if (currentIndex >= totalSlides) currentIndex = 0;
+        if (currentIndex < 0) currentIndex = totalSlides - 1;
+        updateSlider();
+    }
+    function updateSlider() { slider.style.transform = `translateX(-${currentIndex * 100}%)`; }
+</script>
+
+</body>
+</html>
