@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Gustavo Delnardo | Desarrollador DAM</title>
+    <style>
+        :root {
+            /* Paleta Sith adaptada a CV */
+            --sith-black: #1a1a1a;       /* Fondo Sidebar */
+            --sith-dark-grey: #2c2c2c;   /* Elementos oscuros */
+            --sith-red: #ff4444;         /* Acento principal (Sable) */
+            --sith-dark-red: #b30000;    /* Rojo oscuro para texto en blanco (Legibilidad) */
+            --bg-void: #0d0d0d;          /* Fondo de la ventana */
+            
+            /* Variables funcionales */
+            --sidebar-bg: var(--sith-black);
+            --sidebar-text: #e0e0e0;
+            --paper-bg: #ffffff;         /* Blanco puro para la hoja */
+            --text-main: #333333;        /* Texto principal estándar */
+            --text-muted: #666666;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            background-color: var(--bg-void); /* Fondo oscuro detrás del papel */
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            background: var(--paper-bg);
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            /* Sombra roja sutil para dar efecto de "levitación" o energía */
+            box-shadow: 0 0 25px rgba(255, 68, 68, 0.15); 
+        }
+
+        /* --- SIDEBAR (LADO OSCURO) --- */
+        .sidebar {
+            background-color: var(--sidebar-bg);
+            color: var(--sidebar-text);
+            padding: 40px 30px;
+            text-align: left;
+            border-right: 4px solid var(--sith-red); /* Línea de separación láser */
+        }
+
+        .profile-img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            /* Borde rojo brillante */
+            border: 3px solid var(--sith-red);
+            box-shadow: 0 0 15px rgba(255, 68, 68, 0.4);
+            margin: 0 auto 30px auto;
+            display: block;
+        }
+
+        .sidebar h1 {
+            font-size: 26px;
+            margin: 0 0 5px 0;
+            font-weight: 700;
+            line-height: 1.2;
+            color: #fff;
+            text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+        }
+
+        .sidebar h2 {
+            font-size: 16px;
+            font-weight: 400;
+            color: var(--sith-red); /* Rojo vibrante */
+            margin: 0 0 30px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .sidebar-section {
+            margin-bottom: 35px;
+        }
+
+        .sidebar-title {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 1px solid var(--sith-red); /* Subrayado rojo */
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            color: #fff;
+            opacity: 0.9;
+        }
+
+        .contact-list, .skills-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .contact-list li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            color: #ccc;
+        }
+
+        .contact-list span {
+            margin-left: 10px;
+        }
+
+        .skills-list li {
+            margin-bottom: 8px;
+            background: rgba(255, 68, 68, 0.1); /* Fondo rojizo muy sutil */
+            padding: 5px 10px;
+            border-radius: 4px;
+            border-left: 2px solid var(--sith-red);
+            color: #eee;
+        }
+
+        /* --- MAIN CONTENT (PAPEL BLANCO) --- */
+        .main-content {
+            padding: 50px;
+            background-color: var(--paper-bg);
+        }
+
+        .main-section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            text-transform: uppercase;
+            color: var(--sith-black); /* Título oscuro */
+            border-left: 5px solid var(--sith-red); /* Borde rojo */
+            padding-left: 15px;
+            margin-bottom: 25px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .profile-summary {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 30px;
+            text-align: justify;
+            border-left: 2px solid #eee;
+            padding-left: 15px;
+        }
+        
+        /* Negritas en el texto principal en rojo oscuro para consistencia */
+        .profile-summary strong {
+            color: var(--sith-dark-red);
+        }
+
+        /* Project & Job Cards */
+        .item-card {
+            margin-bottom: 25px;
+            border-left: 3px solid #eee; /* Borde sutil por defecto */
+            padding-left: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .item-card:hover {
+            border-left-color: var(--sith-red); /* Se ilumina rojo al pasar el mouse */
+            background: linear-gradient(90deg, rgba(255,68,68,0.02) 0%, rgba(255,255,255,0) 100%);
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 5px;
+            flex-wrap: wrap;
+        }
+
+        .item-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--sith-black);
+        }
+
+        .item-subtitle {
+            font-size: 15px;
+            color: var(--sith-dark-red); /* Subtítulos en rojo oscuro profesional */
+            font-weight: 600;
+        }
+
+        .item-date {
+            font-size: 13px;
+            color: #999;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .item-desc {
+            font-size: 14px;
+            color: #444;
+            margin-top: 8px;
+        }
+        
+        .item-desc ul {
+            padding-left: 20px;
+            margin: 5px 0;
+        }
+        
+        .item-desc li {
+            margin-bottom: 4px;
+        }
+        
+        /* Viñetas personalizadas rojas */
+        .item-desc ul li::marker {
+            color: var(--sith-red);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                margin: 0;
+                box-shadow: none;
+            }
+            .sidebar {
+                text-align: center;
+                padding: 30px 20px;
+                border-right: none;
+                border-bottom: 4px solid var(--sith-red);
+            }
+            .profile-img {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .sidebar-title {
+                text-align: center;
+            }
+            .contact-list li {
+                justify-content: center;
+            }
+            .main-content {
+                padding: 30px 20px;
+            }
+            .item-header {
+                flex-direction: column;
+            }
+            .item-date {
+                margin-top: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <aside class="sidebar">
+            <img src="yo.jpeg" alt="Gustavo Delnardo" class="profile-img">
+            
+            <h1>Gustavo Delnardo</h1>
+            <h2>Desarrollador DAM</h2>
+
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Contacto</h3>
+                <ul class="contact-list">
+                    <li>📍 C/Islas Canarias 38 </li>
+                    <li>🌍️ Valencia, España</li>
+                    <li>📞 +34 642 600 105</li>
+                    <li>✉️ gustavoedv35@gmail.com</li>
+                    </ul>
+            </div>
+
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Tech Stack</h3>
+                <ul class="skills-list">
+                    <li>Python</li>
+                    <li>SQL / MySQL</li>
+                    <li>HTML5 & CSS3</li>
+                    <li>Markdown</li>
+                    <li>Entornos Windows/Linux</li>
+                </ul>
+            </div>
+
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Soft Skills</h3>
+                <ul class="skills-list">
+                    <li>Gestión de Tiempo</li>
+                    <li>Resolución de Problemas</li>
+                    <li>Trabajo en Equipo</li>
+                    <li>Adaptabilidad</li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Idiomas</h3>
+                <ul class="contact-list">
+                    <li>🇬🇧 Inglés (B1 - Intermedio)</li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            
+            <section class="main-section">
+                <p class="profile-summary">
+                    Estudiante de <strong>Desarrollo de Aplicaciones Multiplataforma (DAM)</strong> con base en gestión administrativa y operativa. Combino la lógica de programación con años de experiencia en resolución de incidencias, gestión de recursos y trato con clientes. Busco mi primera oportunidad profesional como desarrollador para aportar soluciones de software eficientes, limpias y escalables.
+                </p>
+            </section>
+            <section class="main-section">
+                <h2 class="section-title">Experiencia Profesional</h2>
+                
+                <div class="item-card">
+                    <div class="item-header">
+                        <div class="item-title">Asistente Administrativo & Logística</div>
+                        <div class="item-subtitle">Inversiones Aconcagua (Chile)</div>
+                        <div class="item-date">Ago 2024 - May 2025</div> 
+                    </div>
+                    <div class="item-desc">
+                        <ul>
+                            <li>Control y gestión de facturación y recepción de mercancía utilizando software de gestión.</li>
+                            <li>Optimización de la logística de inventario, reduciendo tiempos de reposición.</li>
+                            <li>Resolución de incidencias con proveedores y clientes clave.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="item-card">
+                    <div class="item-header">
+                        <div class="item-title">Encargado de Operaciones</div>
+                        <div class="item-subtitle">Buganvilla Café (Chile)</div>
+                        <div class="item-date">Dic 2023 - Jul 2024</div>
+                    </div>
+                    <div class="item-desc">
+                        <ul>
+                            <li>Gestión integral del punto de venta: apertura, cierre de caja y arqueo.</li>
+                            <li>Supervisión de stock y coordinación de pedidos con proveedores.</li>
+                            <li>Atención al cliente orientada a la fidelización y resolución de quejas.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="item-card">
+                    <div class="item-header">
+                        <div class="item-title">Soporte Administrativo y Teleoperador</div>
+                        <div class="item-subtitle">Florería Floramour SPA (Chile)</div>
+                        <div class="item-date">Sep 2021 - Ago 2023</div>
+                    </div>
+                    <div class="item-desc">
+                        <ul>
+                            <li>Digitalización y tramitación de facturas y órdenes de compra.</li>
+                            <li>Gestión telefónica y vía email de pedidos y atención post-venta.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="main-section">
+                <h2 class="section-title">Formación Académica</h2>
+                
+                <div class="item-card">
+                    <div class="item-header">
+                        <div class="item-title">Estudiante de DAM</div>
+                        <div class="item-date">En curso</div>
+                    </div>
+                    <div class="item-subtitle">CEAC FP Oficial - Valencia, España</div>
+                    <div class="item-desc">
+                        <p>Formación enfocada en programación orientada a objetos, bases de datos relacionales, entornos de desarrollo y sistemas informáticos.</p>
+                    </div>
+                </div>
+                
+                <div class="item-card">
+                    <div class="item-header">
+                        <div class="item-title">Bachiller en Ciencias</div>
+                        <div class="item-date">Promoción del 2008</div>
+                    </div>
+                    <div class="item-subtitle">Liceo "BR. Rafael Castro Machado" - Venezuela</div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+</body>
+</html>
