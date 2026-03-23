@@ -3,381 +3,390 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV - Gustavo Delnardo | Desarrollador DAM</title>
+    <link rel="icon" href="assets/favicon.jpg" type="image/jpeg">
+    <title>CV — Gustavo Delnardo | DAM</title>
     <style>
+        /* === VARIABLES GLOBALES (Consistencia con index.html) === */
         :root {
-            /* Paleta Sith adaptada a CV */
-            --sith-black: #1a1a1a;       /* Fondo Sidebar */
-            --sith-dark-grey: #2c2c2c;   /* Elementos oscuros */
-            --sith-red: #ff4444;         /* Acento principal (Sable) */
-            --sith-dark-red: #b30000;    /* Rojo oscuro para texto en blanco (Legibilidad) */
-            --bg-void: #0d0d0d;          /* Fondo de la ventana */
-            
-            /* Variables funcionales */
-            --sidebar-bg: var(--sith-black);
-            --sidebar-text: #e0e0e0;
-            --paper-bg: #ffffff;         /* Blanco puro para la hoja */
-            --text-main: #333333;        /* Texto principal estándar */
-            --text-muted: #666666;
+            --bg-primary: #121212;
+            --bg-card: #242424;
+            --accent: #ff4444;
+            --accent-glow: rgba(255, 68, 68, 0.4);
+            --text-main: #e0e0e0;
+            --text-dim: #999;
+            --text-muted: #666;
         }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text-main);
-            background-color: var(--bg-void); /* Fondo oscuro detrás del papel */
+        /* === RESET === */
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
 
-        .container {
-            max-width: 1000px;
-            margin: 40px auto;
-            background: var(--paper-bg);
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            /* Sombra roja sutil para dar efecto de "levitación" o energía */
-            box-shadow: 0 0 25px rgba(255, 68, 68, 0.15); 
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 40px 20px;
         }
 
-        /* --- SIDEBAR (LADO OSCURO) --- */
+        /* === CONTENEDOR PRINCIPAL (Layout Grid) === */
+        .cv-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            border: 1px solid #333;
+            display: grid;
+            grid-template-columns: 320px 1fr; /* Columna Izquierda (Sidebar) y Derecha (Main) */
+            overflow: hidden;
+        }
+
+        /* === BARRA LATERAL (Perfil, Contacto, Skills) === */
         .sidebar {
-            background-color: var(--sidebar-bg);
-            color: var(--sidebar-text);
+            background: linear-gradient(180deg, #1a1a1a 0%, #121212 100%);
             padding: 40px 30px;
-            text-align: left;
-            border-right: 4px solid var(--sith-red); /* Línea de separación láser */
+            border-right: 1px solid #333;
         }
 
         .profile-img {
-            width: 160px;
-            height: 160px;
+            width: 180px;
+            height: 180px;
             border-radius: 50%;
             object-fit: cover;
-            /* Borde rojo brillante */
-            border: 3px solid var(--sith-red);
-            box-shadow: 0 0 15px rgba(255, 68, 68, 0.4);
-            margin: 0 auto 30px auto;
+            border: 3px solid var(--accent);
+            box-shadow: 0 0 20px var(--accent-glow);
+            margin: 0 auto 20px;
             display: block;
         }
 
         .sidebar h1 {
-            font-size: 26px;
-            margin: 0 0 5px 0;
-            font-weight: 700;
-            line-height: 1.2;
+            font-size: 1.8rem;
             color: #fff;
-            text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+            text-align: center;
+            line-height: 1.2;
+            margin-bottom: 5px;
         }
 
         .sidebar h2 {
-            font-size: 16px;
-            font-weight: 400;
-            color: var(--sith-red); /* Rojo vibrante */
-            margin: 0 0 30px 0;
+            font-size: 1rem;
+            color: var(--accent);
+            text-align: center;
             text-transform: uppercase;
             letter-spacing: 1px;
+            margin-bottom: 30px;
         }
 
+        /* Secciones del Sidebar */
         .sidebar-section {
             margin-bottom: 35px;
         }
 
         .sidebar-title {
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            border-bottom: 1px solid var(--sith-red); /* Subrayado rojo */
-            padding-bottom: 10px;
-            margin-bottom: 15px;
+            font-size: 1.1rem;
             color: #fff;
-            opacity: 0.9;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .contact-list, .skills-list {
+        .contact-list {
             list-style: none;
-            padding: 0;
-            margin: 0;
-            font-size: 14px;
         }
 
         .contact-list li {
             margin-bottom: 12px;
+            font-size: 0.95rem;
             display: flex;
             align-items: center;
-            color: #ccc;
+            gap: 10px;
+            color: var(--text-dim);
         }
 
-        .contact-list span {
-            margin-left: 10px;
+        .contact-list a {
+            color: var(--text-main);
+            text-decoration: none;
+            transition: color 0.3s;
         }
 
-        .skills-list li {
-            margin-bottom: 8px;
-            background: rgba(255, 68, 68, 0.1); /* Fondo rojizo muy sutil */
-            padding: 5px 10px;
+        .contact-list a:hover {
+            color: var(--accent);
+        }
+
+        /* Etiquetas de Skills */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            background: #222;
+            color: var(--text-main);
+            padding: 6px 12px;
             border-radius: 4px;
-            border-left: 2px solid var(--sith-red);
-            color: #eee;
+            font-size: 0.85rem;
+            border: 1px solid #444;
+            font-weight: 600;
         }
 
-        /* --- MAIN CONTENT (PAPEL BLANCO) --- */
+        /* === CONTENIDO PRINCIPAL (Experiencia, Educación) === */
         .main-content {
-            padding: 50px;
-            background-color: var(--paper-bg);
+            padding: 50px 60px;
         }
 
         .main-section {
-            margin-bottom: 40px;
+            margin-bottom: 45px;
         }
 
-        .section-title {
-            font-size: 20px;
-            text-transform: uppercase;
-            color: var(--sith-black); /* Título oscuro */
-            border-left: 5px solid var(--sith-red); /* Borde rojo */
-            padding-left: 15px;
+        .main-title {
+            font-size: 1.8rem;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 15px;
             margin-bottom: 25px;
-            font-weight: 700;
-            letter-spacing: 1px;
         }
 
-        .profile-summary {
-            font-size: 16px;
-            color: #555;
+        .main-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #444;
+        }
+
+        /* Items de Experiencia / Educación */
+        .timeline-item {
+            position: relative;
+            padding-left: 25px;
             margin-bottom: 30px;
-            text-align: justify;
-            border-left: 2px solid #eee;
-            padding-left: 15px;
-        }
-        
-        /* Negritas en el texto principal en rojo oscuro para consistencia */
-        .profile-summary strong {
-            color: var(--sith-dark-red);
+            border-left: 2px solid #444;
         }
 
-        /* Project & Job Cards */
-        .item-card {
-            margin-bottom: 25px;
-            border-left: 3px solid #eee; /* Borde sutil por defecto */
-            padding-left: 20px;
-            transition: all 0.3s ease;
-        }
-
-        .item-card:hover {
-            border-left-color: var(--sith-red); /* Se ilumina rojo al pasar el mouse */
-            background: linear-gradient(90deg, rgba(255,68,68,0.02) 0%, rgba(255,255,255,0) 100%);
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 5px;
+            width: 14px;
+            height: 14px;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent-glow);
         }
 
         .item-header {
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
             flex-wrap: wrap;
+            gap: 10px;
         }
 
         .item-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--sith-black);
-        }
-
-        .item-subtitle {
-            font-size: 15px;
-            color: var(--sith-dark-red); /* Subtítulos en rojo oscuro profesional */
-            font-weight: 600;
+            font-size: 1.3rem;
+            color: #fff;
         }
 
         .item-date {
-            font-size: 13px;
-            color: #999;
+            font-size: 0.9rem;
+            color: var(--accent);
+            font-weight: bold;
+            background: rgba(255, 68, 68, 0.1);
+            padding: 4px 10px;
+            border-radius: 4px;
+        }
+
+        .item-subtitle {
+            font-size: 1rem;
+            color: var(--text-dim);
+            margin-bottom: 12px;
             font-weight: 600;
-            white-space: nowrap;
         }
 
         .item-desc {
-            font-size: 14px;
-            color: #444;
-            margin-top: 8px;
-        }
-        
-        .item-desc ul {
-            padding-left: 20px;
-            margin: 5px 0;
-        }
-        
-        .item-desc li {
-            margin-bottom: 4px;
-        }
-        
-        /* Viñetas personalizadas rojas */
-        .item-desc ul li::marker {
-            color: var(--sith-red);
+            color: var(--text-dim);
+            text-align: justify;
+            font-size: 0.95rem;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .container {
+        /* Botón de Volver */
+        .btn-back {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .btn-back:hover {
+            color: #fff;
+            transform: translateX(-5px);
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 900px) {
+            .cv-container {
                 grid-template-columns: 1fr;
-                margin: 0;
-                box-shadow: none;
             }
             .sidebar {
-                text-align: center;
-                padding: 30px 20px;
                 border-right: none;
-                border-bottom: 4px solid var(--sith-red);
-            }
-            .profile-img {
-                margin-left: auto;
-                margin-right: auto;
-            }
-            .sidebar-title {
-                text-align: center;
-            }
-            .contact-list li {
-                justify-content: center;
+                border-bottom: 1px solid #333;
             }
             .main-content {
-                padding: 30px 20px;
+                padding: 40px 30px;
             }
+        }
+
+        @media (max-width: 600px) {
             .item-header {
                 flex-direction: column;
             }
-            .item-date {
-                margin-top: 5px;
+            .profile-img {
+                width: 150px;
+                height: 150px;
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
+    <!-- Botón para volver al portafolio -->
+    <div style="max-width: 1100px; margin: 0 auto;">
+        <a href="index.html" class="btn-back">❮ VOLVER AL PORTAFOLIO</a>
+    </div>
+
+    <div class="cv-container">
+        
+        <!-- === SIDEBAR === -->
         <aside class="sidebar">
-            <img src="yo.jpeg" alt="Gustavo Delnardo" class="profile-img">
-            
+            <img src="assets/yo.jpeg" alt="Gustavo Delnardo" class="profile-img">
             <h1>Gustavo Delnardo</h1>
-            <h2>Desarrollador DAM</h2>
+            <h2>Desarrollador Multiplataforma</h2>
 
             <div class="sidebar-section">
                 <h3 class="sidebar-title">Contacto</h3>
                 <ul class="contact-list">
-                    <li>📍 C/Islas Canarias 38 </li>
-                    <li>🌍️ Valencia, España</li>
-                    <li>📞 +34 642 600 105</li>
-                    <li>✉️ gustavoedv35@gmail.com</li>
-                    </ul>
+                    <li>📍 Valencia, España</li>
+                    <li>📧 <a href="mailto:gustavoedv35@gmail.com">gustavoedv35@gmail.com</a></li>
+                    <li>🔗 <a href="https://www.linkedin.com/in/gustavo-delnardo-2b2990397/" target="_blank">LinkedIn</a></li>
+                    <li>💻 <a href="https://github.com/soytavodev" target="_blank">github.com/soytavodev</a></li>
+                </ul>
             </div>
 
             <div class="sidebar-section">
                 <h3 class="sidebar-title">Tech Stack</h3>
-                <ul class="skills-list">
-                    <li>Python</li>
-                    <li>SQL / MySQL</li>
-                    <li>HTML5 & CSS3</li>
-                    <li>Markdown</li>
-                    <li>Entornos Windows/Linux</li>
-                </ul>
+                <div class="skills-container">
+                    <!-- Stack técnico 100% real -->
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">PHP</span>
+                    <span class="skill-tag">MySQL / Bases de Datos</span>
+                    <span class="skill-tag">HTML5</span>
+                    <span class="skill-tag">CSS3</span>
+                    <span class="skill-tag">Git & GitHub</span>
+                </div>
             </div>
 
             <div class="sidebar-section">
                 <h3 class="sidebar-title">Soft Skills</h3>
-                <ul class="skills-list">
-                    <li>Gestión de Tiempo</li>
-                    <li>Resolución de Problemas</li>
-                    <li>Trabajo en Equipo</li>
-                    <li>Adaptabilidad</li>
-                </ul>
-            </div>
-            
-            <div class="sidebar-section">
-                <h3 class="sidebar-title">Idiomas</h3>
-                <ul class="contact-list">
-                    <li>🇬🇧 Inglés (B1 - Intermedio)</li>
-                </ul>
+                <div class="skills-container">
+                    <span class="skill-tag">Resolución de Incidencias</span>
+                    <span class="skill-tag">Trabajo bajo presión</span>
+                    <span class="skill-tag">Gestión Operativa</span>
+                    <span class="skill-tag">Metodologías Ágiles</span>
+                </div>
             </div>
         </aside>
 
+        <!-- === CONTENIDO PRINCIPAL === -->
         <main class="main-content">
             
+            <!-- PERFIL -->
             <section class="main-section">
-                <p class="profile-summary">
-                    Estudiante de <strong>Desarrollo de Aplicaciones Multiplataforma (DAM)</strong> con base en gestión administrativa y operativa. Combino la lógica de programación con años de experiencia en resolución de incidencias, gestión de recursos y trato con clientes. Busco mi primera oportunidad profesional como desarrollador para aportar soluciones de software eficientes, limpias y escalables.
+                <h3 class="main-title">Perfil Profesional</h3>
+                <p class="item-desc" style="font-size: 1.05rem;">
+                    Desarrollador de Aplicaciones Multiplataforma (DAM) con un sólido background en operaciones y logística. Acostumbrado a auditar procesos, gestionar facturación y resolver cuellos de botella en tiempo real. Hoy, aplico ese mismo pensamiento crítico y analítico para diseñar bases de datos robustas, escribir código escalable y construir soluciones tecnológicas orientadas a la eficiencia del usuario final y del negocio.
                 </p>
             </section>
+
+            <!-- EDUCACIÓN -->
             <section class="main-section">
-                <h2 class="section-title">Experiencia Profesional</h2>
+                <h3 class="main-title">Educación IT</h3>
                 
-                <div class="item-card">
+                <div class="timeline-item">
                     <div class="item-header">
-                        <div class="item-title">Asistente Administrativo & Logística</div>
-                        <div class="item-subtitle">Inversiones Aconcagua (Chile)</div>
-                        <div class="item-date">Ago 2024 - May 2025</div> 
+                        <h4 class="item-title">CFGS Desarrollo de Aplicaciones Multiplataforma (DAM)</h4>
+                        <span class="item-date">2025 - Actualidad</span>
                     </div>
-                    <div class="item-desc">
-                        <ul>
-                            <li>Control y gestión de facturación y recepción de mercancía utilizando software de gestión.</li>
-                            <li>Optimización de la logística de inventario, reduciendo tiempos de reposición.</li>
-                            <li>Resolución de incidencias con proveedores y clientes clave.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="item-card">
-                    <div class="item-header">
-                        <div class="item-title">Encargado de Operaciones</div>
-                        <div class="item-subtitle">Buganvilla Café (Chile)</div>
-                        <div class="item-date">Dic 2023 - Jul 2024</div>
-                    </div>
-                    <div class="item-desc">
-                        <ul>
-                            <li>Gestión integral del punto de venta: apertura, cierre de caja y arqueo.</li>
-                            <li>Supervisión de stock y coordinación de pedidos con proveedores.</li>
-                            <li>Atención al cliente orientada a la fidelización y resolución de quejas.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="item-card">
-                    <div class="item-header">
-                        <div class="item-title">Soporte Administrativo y Teleoperador</div>
-                        <div class="item-subtitle">Florería Floramour SPA (Chile)</div>
-                        <div class="item-date">Sep 2021 - Ago 2023</div>
-                    </div>
-                    <div class="item-desc">
-                        <ul>
-                            <li>Digitalización y tramitación de facturas y órdenes de compra.</li>
-                            <li>Gestión telefónica y vía email de pedidos y atención post-venta.</li>
-                        </ul>
-                    </div>
+                    <!-- RELLENA CON TU INSTITUTO -->
+                    <h5 class="item-subtitle">CEAC FP Oficial - Valencia, España</h5>
+                    <p class="item-desc">
+                        Formación integral en desarrollo de software backend y frontend. Diseño e implementación de arquitecturas de bases de datos relacionales, programación orientada a objetos y desarrollo de interfaces de usuario.
+                    </p>
                 </div>
             </section>
 
+            <!-- EXPERIENCIA PREVIA -->
             <section class="main-section">
-                <h2 class="section-title">Formación Académica</h2>
+                <h3 class="main-title">Experiencia Laboral</h3>
                 
-                <div class="item-card">
+                <!-- TRABAJO 1 (El más reciente o importante) -->
+                <div class="timeline-item">
                     <div class="item-header">
-                        <div class="item-title">Estudiante de DAM</div>
-                        <div class="item-date">En curso</div>
+                        <!-- RELLENA CON TU CARGO EXACTO -->
+                        <h4 class="item-title">Asistente administrativo/Logística</h4>
+                        <!-- RELLENA CON LAS FECHAS -->
+                        <span class="item-date">Ago 2024 - May 2025</span>
                     </div>
-                    <div class="item-subtitle">CEAC FP Oficial - Valencia, España</div>
-                    <div class="item-desc">
-                        <p>Formación enfocada en programación orientada a objetos, bases de datos relacionales, entornos de desarrollo y sistemas informáticos.</p>
+                    <!-- RELLENA CON LA EMPRESA -->
+                    <h5 class="item-subtitle">Inversiones Aconcagua - RM de Santiago, Chile</h5>
+                    <p class="item-desc">
+                        Gestión integral de la cadena logística, control de facturación y auditoría de procesos. Responsable de la resolución de incidencias operativas bajo presión, garantizando la satisfacción del cliente y la optimización de los recursos internos de la empresa.
+                    </p>
+                </div>
+
+                <!-- TRABAJO 2 (Si tienes otro, si no lo tienes, borra este bloque entero) -->
+                <div class="timeline-item">
+                    <div class="item-header">
+                        <!-- RELLENA CON TU CARGO EXACTO -->
+                        <h4 class="item-title">Encargado de Operaciones</h4>
+                        <!-- RELLENA CON LAS FECHAS -->
+                        <span class="item-date">Dic 2023 - Jul 2024</span>
                     </div>
+                    <!-- RELLENA CON LA EMPRESA -->
+                    <h5 class="item-subtitle">Buganvilla Café, RM de Santiago, Chile</h5>
+                    <p class="item-desc">
+                        Atención al cliente, soporte administrativo y resolución rápida de problemas estructurales en el flujo de trabajo diario.
+                    </p>
+                </div>
+                <div class="timeline-item">
+                    <div class="item-header">
+                        <!-- RELLENA CON TU CARGO EXACTO -->
+                        <h4 class="item-title">Soporte administrativo y teleoperador</h4>
+                        <!-- RELLENA CON LAS FECHAS -->
+                        <span class="item-date">Sept 2021 - Ago 2023</span>
+                    </div>
+                    <!-- RELLENA CON LA EMPRESA -->
+                    <h5 class="item-subtitle">Florería Floramour, RM de Santiago, Chile</h5>
+                    <p class="item-desc">
+                        Digitalización y tramitación de facturas y órdenes de compra.
+Gestión telefónica y vía email de pedidos y atención post-venta.
+                    </p>
                 </div>
                 
-                <div class="item-card">
-                    <div class="item-header">
-                        <div class="item-title">Bachiller en Ciencias</div>
-                        <div class="item-date">Promoción del 2008</div>
-                    </div>
-                    <div class="item-subtitle">Liceo "BR. Rafael Castro Machado" - Venezuela</div>
-                </div>
             </section>
 
         </main>
     </div>
+
 </body>
 </html>

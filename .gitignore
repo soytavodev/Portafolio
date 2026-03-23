@@ -1,0 +1,29 @@
+Archivos del sistema operativo
+
+.DS_Store
+Thumbs.db
+
+Configuración del editor / IDE
+
+.vscode/
+.idea/
+*.suo
+.ntvs
+*.njsproj
+*.sln
+
+Archivos temporales o de caché
+
+*.log
+.npm/
+
+Entornos virtuales o dependencias (por si en el futuro añades node_modules o venv)
+
+node_modules/
+venv/
+env/
+
+Archivos de configuración locales que no deben subirse (por seguridad)
+
+config.local.php
+.env

@@ -1,177 +1,571 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="assets/favicon.jpg" type="image/png">
-  <title>Portfolio — Gustavo Delnardo</title>
-  <style>
-    :root {
-      --bg-primary: #1a1a1a;
-      --bg-card: #2c2c2c;
-      --accent: #ff4444;
-      --text-main: #e0e0e0;
-      --text-dim: #888;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Favicon desde la carpeta assets -->
+    <link rel="icon" href="assets/favicon.jpg" type="image/jpeg">
+    <title>Portfolio — Gustavo Delnardo | DAM</title>
+    <style>
+        /* === VARIABLES GLOBALES (El Tema Sith) === */
+        :root {
+            --bg-primary: #121212;
+            --bg-card: #242424;
+            --accent: #ff4444;
+            --accent-glow: rgba(255, 68, 68, 0.4);
+            --text-main: #e0e0e0;
+            --text-dim: #999;
+            --transition-speed: 0.5s;
+        }
 
-    body {
-      margin: 0;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: var(--bg-primary);
-      color: var(--text-main);
-    }
+        /* === RESET Y BASE === */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    header {
-      background: linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(44,44,44,0.8) 100%);
-      padding: 100px 20px;
-      text-align: center;
-      border-bottom: 3px solid var(--accent);
-    }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
 
-    header h1 {
-      margin: 0;
-      font-size: 2.5rem;
-      letter-spacing: -1px;
-    }
+        /* === HEADER === */
+        header {
+            background: linear-gradient(180deg, rgba(0,0,0,0.95) 0%, rgba(18,18,18,1) 100%);
+            padding: 100px 20px 60px;
+            text-align: center;
+            border-bottom: 2px solid var(--accent);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            position: relative;
+            z-index: 10;
+        }
 
-    header h2 {
-      margin-top: 10px;
-      font-weight: 300;
-      color: var(--accent);
-      text-transform: uppercase;
-      font-size: 1rem;
-      letter-spacing: 2px;
-      margin-bottom: 25px; /* Espacio para el botón */
-    }
+        header h1 {
+            font-size: 3rem;
+            letter-spacing: -1px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px var(--accent-glow);
+        }
 
-    /* --- NUEVO ESTILO PARA EL BOTÓN DE CV --- */
-    .btn-cv {
-      display: inline-block;
-      padding: 12px 30px;
-      background: var(--accent);
-      color: #000;
-      text-decoration: none;
-      border-radius: 6px;
-      font-weight: bold;
-      font-size: 1rem;
-      transition: all .3s ease;
-      border: 2px solid var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
+        header h2 {
+            font-weight: 400;
+            color: var(--accent);
+            text-transform: uppercase;
+            font-size: 1.1rem;
+            letter-spacing: 3px;
+            margin-bottom: 30px;
+        }
 
-    .btn-cv:hover {
-      background: transparent;
-      color: var(--accent);
-      transform: scale(1.05);
-    }
+        .btn-cv {
+            display: inline-block;
+            padding: 14px 35px;
+            background: var(--accent);
+            color: #000;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 800;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: 2px solid var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
 
-    main {
-      max-width: 1100px;
-      margin: auto;
-      padding: 50px 20px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-    }
+        .btn-cv:hover {
+            background: transparent;
+            color: var(--accent);
+            box-shadow: 0 0 25px var(--accent-glow);
+            transform: translateY(-2px);
+        }
 
-    article {
-      background: var(--bg-card);
-      border-radius: 12px;
-      overflow: hidden;
-      transition: all .3s ease;
-      border: 1px solid #333;
-    }
+        /* === SECCIÓN SOBRE MÍ === */
+        .about-section {
+            max-width: 1000px;
+            margin: 80px auto;
+            padding: 0 20px;
+        }
 
-    article:hover {
-      transform: translateY(-10px);
-      border-color: var(--accent);
-      box-shadow: 0 10px 30px rgba(255, 68, 68, 0.1);
-    }
+        .about-section-title {
+            font-size: 2.2rem;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 50px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
 
-    article img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
+        .about-container {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid #333;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
 
-    .card-content { padding: 20px; }
+        .about-image {
+            flex: 0 0 250px; 
+            text-align: center;
+        }
 
-    article h3 { margin: 0 0 10px; color: #fff; }
+        .about-image img {
+            width: 220px;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid var(--accent);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
 
-    article p {
-      font-size: 0.9rem;
-      color: var(--text-dim);
-      line-height: 1.5;
-      margin-bottom: 20px;
-    }
+        .about-content {
+            flex: 1;
+        }
 
-    .btn {
-      display: inline-block;
-      padding: 10px 20px;
-      background: transparent;
-      color: var(--accent);
-      border: 1px solid var(--accent);
-      text-decoration: none;
-      border-radius: 4px;
-      font-size: 0.8rem;
-      font-weight: bold;
-      transition: all .3s;
-    }
+        .about-content h3 {
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
 
-    .btn:hover {
-      background: var(--accent);
-      color: #000;
-    }
+        .about-text {
+            font-size: 1.05rem;
+            color: var(--text-dim);
+            text-align: justify;
+            margin-bottom: 20px;
+        }
 
-    footer {
-      text-align: center;
-      padding: 40px;
-      background: #0d0d0d;
-      font-size: 0.8rem;
-      border-top: 1px solid #222;
-    }
-  </style>
+        .about-text strong {
+            color: var(--text-main);
+        }
+        
+        /* Contenedor de Redes Sociales */
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: #111;
+            color: var(--text-main);
+            text-decoration: none;
+            border-radius: 6px;
+            border: 1px solid #333;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+            transition: fill 0.3s ease;
+        }
+
+        .social-btn:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #000;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px var(--accent-glow);
+        }
+
+        /* === SECCIÓN PORTAFOLIO (Carrusel 3D) === */
+        .portfolio-section {
+            padding: 40px 0 100px 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .portfolio-section h2 {
+            font-size: 2.2rem;
+            color: #fff;
+            margin-bottom: 50px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            height: 480px; /* Aumentado para dar espacio a las tarjetas más altas */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1000px; 
+        }
+
+        .carousel-track {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform-style: preserve-3d;
+        }
+
+        .card {
+            position: absolute;
+            width: 320px;
+            height: 430px; /* Aumentado de 400 a 430px por el CSS Defensivo */
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid #333;
+            overflow: hidden;
+            transition: transform var(--transition-speed) ease-in-out, 
+                        opacity var(--transition-speed) ease-in-out, 
+                        z-index var(--transition-speed) ease-in-out,
+                        box-shadow var(--transition-speed) ease-in-out;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .card-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
+        }
+
+        /* CSS Defensivo para evitar el descuadre con textos largos */
+        .card-content h3 {
+            font-size: 1.25rem;
+            color: #fff;
+            margin-bottom: 8px;
+            /* Truncar texto a 2 líneas máximo */
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            line-height: 1.3;
+        }
+
+        .card-content p {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            margin-bottom: 15px;
+            /* Truncar texto a 3 líneas máximo */
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .btn-card {
+            display: block;
+            text-align: center;
+            padding: 10px;
+            background: transparent;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: 0.3s;
+            margin-top: auto;
+        }
+
+        .btn-card:hover {
+            background: var(--accent);
+            color: #000;
+        }
+
+        /* ESTADOS DEL CARRUSEL */
+        .card.active {
+            transform: translateX(0) scale(1) translateZ(0);
+            opacity: 1;
+            z-index: 3;
+            border-color: var(--accent);
+            box-shadow: 0 15px 40px var(--accent-glow);
+            cursor: default;
+        }
+
+        .card.prev {
+            transform: translateX(-60%) scale(0.8) translateZ(-100px) rotateY(15deg);
+            opacity: 0.4;
+            z-index: 2;
+        }
+
+        .card.next {
+            transform: translateX(60%) scale(0.8) translateZ(-100px) rotateY(-15deg);
+            opacity: 0.4;
+            z-index: 2;
+        }
+
+        .card.hidden {
+            transform: translateX(0) scale(0.6) translateZ(-200px);
+            opacity: 0;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .card.prev:hover, .card.next:hover {
+            opacity: 0.8;
+            border-color: #555;
+        }
+
+        /* Controles de navegación */
+        .carousel-nav {
+            margin-top: 30px;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-btn {
+            background: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav-btn:hover {
+            background: var(--accent);
+            color: #000;
+            transform: scale(1.1);
+        }
+
+        /* === FOOTER === */
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #0a0a0a;
+            font-size: 0.9rem;
+            border-top: 1px solid #222;
+            color: var(--text-dim);
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 900px) {
+            .about-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .about-image {
+                flex: 0 0 auto;
+            }
+            .about-text {
+                text-align: center;
+            }
+            .social-links {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.2rem; }
+            .carousel-container { height: 420px; }
+            .card { width: 280px; height: 400px; }
+            .card.prev { transform: translateX(-45%) scale(0.75) translateZ(-100px) rotateY(10deg); }
+            .card.next { transform: translateX(45%) scale(0.75) translateZ(-100px) rotateY(-10deg); }
+        }
+        
+        @media (max-width: 480px) {
+            .about-container { padding: 25px 15px; }
+            .social-btn { padding: 10px; width: 100%; justify-content: center; }
+            .card.prev { transform: translateX(-30%) scale(0.7) translateZ(-150px); opacity: 0.2; }
+            .card.next { transform: translateX(30%) scale(0.7) translateZ(-150px); opacity: 0.2; }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Gustavo Delnardo</h1>
-    <h2>Desarrollador de Aplicaciones Multiplataforma</h2>
-    <a href="cv.html" class="btn-cv" target="_blank" rel="noopener noreferrer">Ver Currículum</a>
-  </header>
- 
-  <main>
-    <article>
-      <img src="assets/conversordivisas.jpg" alt="ChangeIt App">
-      <div class="card-content">
-        <h3>ChangeIt! - Herramienta de conversión de divisas</h3>
-        <p>Sistema de gestión de divisas con integración de API REST financiera y persistencia de datos en MySQL.</p>
-        <a href="changeit-detail.html" class="btn">VER DETALLES</a>
-      </div>
-    </article>
 
-    <article>
-      <img src="assets/ducksith.jpg" alt="DuckIt Project">
-      <div class="card-content">
-        <h3>DuckIt! - Logic Engine</h3>
-        <p>Motor de lógica para simulación de duelos por turnos con procesamiento de estados y algoritmos de combate.</p>
-        <a href="duckit-detail.html" class="btn">VER DETALLES</a>
-      </div>
-    </article>
+    <!-- CABECERA PRINCIPAL -->
+    <header>
+        <h1>Gustavo Delnardo</h1>
+        <h2>Desarrollador de Aplicaciones Multiplataforma</h2>
+        <a href="cv.html" class="btn-cv" target="_blank" rel="noopener noreferrer">Ver Currículum</a>
+    </header>
 
-    <article>
-      <img src="assets/trivia.jpg" alt="Trivia App">
-      <div class="card-content">
-        <h3>GuessIt! - Trivia Challenge</h3>
-        <p>Aplicación web dinámica de trivia desarrollada desde cero utilizando PHP y SQL</p>
-        <p>¡PON A PRUEBA TU CEREBRO!</p>
-        <a href="trivia-detail.html" class="btn">VER DETALLES</a>
-      </div>
-    </article>
-  </main>
- 
-  <footer>
-    &copy; 2026 Gustavo Delnardo | Todos los derechos reservados.
-  </footer>
+    <!-- SECCIÓN SOBRE MÍ -->
+    <section class="about-section">
+        <h2 class="about-section-title">Sobre Mí</h2>
+        
+        <div class="about-container">
+            <div class="about-image">
+                <!-- RUTA CORREGIDA: Por fin en su sitio -->
+                <img src="assets/yo.jpeg" alt="Gustavo Delnardo">
+            </div>
+            
+            <div class="about-content">
+                <h3>El Valor de la Experiencia</h3>
+                <p class="about-text">
+                    Soy estudiante de <strong>Desarrollo de Aplicaciones Multiplataforma (DAM)</strong>. Vengo de la trinchera operativa: durante años he gestionado logística, facturación y resolución de incidencias en tiempo real. 
+                </p>
+                <p class="about-text">
+                    ¿Qué tiene que ver eso con el código? <strong>Todo.</strong> He aprendido a optimizar recursos, a mantener la cabeza fría bajo presión y a tratar con clientes exigentes. Hoy, traduzco esa capacidad analítica y estructurada al <strong>desarrollo de software</strong>. No solo escribo líneas de código; construyo soluciones limpias, seguras y escalables para problemas reales.
+                </p>
+                
+                <!-- Botones Sociales -->
+                <div class="social-links">
+                    <a href="https://github.com/soytavodev" target="_blank" class="social-btn">
+                        <svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        GitHub
+                    </a>
+                    
+                    <a href="https://www.linkedin.com/in/gustavo-delnardo-2b2990397/" target="_blank" class="social-btn">
+                        <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        LinkedIn
+                    </a>
+
+                    <a href="mailto:gustavoedv35@gmail.com" class="social-btn">
+                        <svg viewBox="0 0 24 24"><path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/></svg>
+                        Email
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EL CARRUSEL 3D -->
+    <section class="portfolio-section">
+        <h2>Proyectos Destacados</h2>
+        
+        <div class="carousel-container">
+            <div class="carousel-track" id="carousel-track">
+                
+                <!-- PROYECTO 1 -->
+                <article class="card" data-index="0">
+                    <img src="assets/conversordivisas.jpg" alt="ChangeIt App">
+                    <div class="card-content">
+                        <div>
+                            <h3>ChangeIt!</h3>
+                            <p>Sistema de gestión de divisas con integración de API REST financiera y persistencia de datos en MySQL para auditorías.</p>
+                        </div>
+                        <a href="changeit-detail.html" class="btn-card">VER DETALLES</a>
+                    </div>
+                </article>
+
+                <!-- PROYECTO 2 (Tu Proyecto Intermodular) -->
+                <article class="card" data-index="1">
+                    <img src="assets/chopcheck.jpg" alt="Chopcheck Project">
+                    <div class="card-content">
+                        <div>
+                            <h3>ChopCheck</h3>
+                            <p>Aplicación web multiplataforma B2B2C gestora de gastos compartidos, diseñada para revolucionar la gestión de cobros en el sector HORECA.</p>
+                        </div>
+                        <a href="chopcheck-detail.html" class="btn-card">VER DETALLES</a>
+                    </div>
+                </article>
+
+                <!-- PROYECTO 3 -->
+                <article class="card" data-index="2">
+                    <img src="assets/trivia.jpg" alt="Trivia App">
+                    <div class="card-content">
+                        <div>
+                            <h3>GuessIt! Challenge</h3>
+                            <p>Aplicación full-stack de trivia desarrollada desde cero utilizando PHP nativo y SQL con sistema de autenticación seguro.</p>
+                        </div>
+                        <a href="trivia-detail.html" class="btn-card">VER DETALLES</a>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+
+        <!-- CONTROLES MANUALES -->
+        <div class="carousel-nav">
+            <button class="nav-btn" id="btn-prev">❮</button>
+            <button class="nav-btn" id="btn-next">❯</button>
+        </div>
+    </section>
+
+    <!-- PIE DE PÁGINA -->
+    <footer>
+        &copy; 2026 Gustavo Delnardo | Portafolio profesional | Todos los derechos reservados.
+    </footer>
+
+    <!-- LÓGICA DEL CARRUSEL -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = Array.from(document.querySelectorAll('.card'));
+            const btnPrev = document.getElementById('btn-prev');
+            const btnNext = document.getElementById('btn-next');
+            
+            let currentIndex = 0; 
+
+            function updateCarousel() {
+                cards.forEach((card, index) => {
+                    card.classList.remove('active', 'prev', 'next', 'hidden');
+
+                    if (index === currentIndex) {
+                        card.classList.add('active');
+                    } else if (index === getPrevIndex()) {
+                        card.classList.add('prev');
+                    } else if (index === getNextIndex()) {
+                        card.classList.add('next');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+            }
+
+            function getPrevIndex() {
+                return currentIndex === 0 ? cards.length - 1 : currentIndex - 1;
+            }
+
+            function getNextIndex() {
+                return currentIndex === cards.length - 1 ? 0 : currentIndex + 1;
+            }
+
+            btnPrev.addEventListener('click', () => {
+                currentIndex = getPrevIndex();
+                updateCarousel();
+            });
+
+            btnNext.addEventListener('click', () => {
+                currentIndex = getNextIndex();
+                updateCarousel();
+            });
+
+            cards.forEach((card, index) => {
+                card.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('btn-card')) return;
+                    
+                    if (index !== currentIndex) {
+                        currentIndex = index;
+                        updateCarousel();
+                    }
+                });
+            });
+
+            updateCarousel();
+        });
+    </script>
 </body>
 </html>
