@@ -216,6 +216,27 @@
             font-size: 0.95rem;
         }
 
+        /* Estilo para el link del certificado */
+        .cert-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 15px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            border: 1px solid var(--accent);
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+        .cert-link:hover {
+            background: var(--accent);
+            color: #000;
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
         /* Botón de Volver */
         .btn-back {
             display: inline-block;
@@ -285,7 +306,6 @@
             <div class="sidebar-section">
                 <h3 class="sidebar-title">Tech Stack</h3>
                 <div class="skills-container">
-                    <!-- Stack técnico 100% real -->
                     <span class="skill-tag">Python</span>
                     <span class="skill-tag">JavaScript</span>
                     <span class="skill-tag">PHP</span>
@@ -327,7 +347,6 @@
                         <h4 class="item-title">CFGS Desarrollo de Aplicaciones Multiplataforma (DAM)</h4>
                         <span class="item-date">2025 - Actualidad</span>
                     </div>
-                    <!-- RELLENA CON TU INSTITUTO -->
                     <h5 class="item-subtitle">CEAC FP Oficial - Valencia, España</h5>
                     <p class="item-desc">
                         Formación integral en desarrollo de software backend y frontend. Diseño e implementación de arquitecturas de bases de datos relacionales, programación orientada a objetos y desarrollo de interfaces de usuario.
@@ -335,54 +354,61 @@
                 </div>
             </section>
 
-            <!-- EXPERIENCIA PREVIA -->
+            <!-- CERTIFICACIONES -->
+            <section class="main-section">
+                <h3 class="main-title">Certificaciones</h3>
+                <div class="timeline-item">
+                    <div class="item-header">
+                        <h4 class="item-title">Especialización en Marketing Digital</h4>
+                        <span class="item-date">2024</span>
+                    </div>
+                    <h5 class="item-subtitle">Fundamentos de Negocio y Analítica</h5>
+                    <p class="item-desc">
+                        Capacitación en estrategia digital y comportamiento del usuario. Estos conocimientos me permiten desarrollar software alineado con métricas de conversión y necesidades reales de mercado.
+                    </p>
+                    <a href="assets/cert_curso_esp_marketing_digital.pdf" target="_blank" class="cert-link">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+                        VER CERTIFICADO OFICIAL (PDF)
+                    </a>
+                </div>
+            </section>
+
+            <!-- EXPERIENCIA LABORAL -->
             <section class="main-section">
                 <h3 class="main-title">Experiencia Laboral</h3>
                 
-                <!-- TRABAJO 1 (El más reciente o importante) -->
                 <div class="timeline-item">
                     <div class="item-header">
-                        <!-- RELLENA CON TU CARGO EXACTO -->
                         <h4 class="item-title">Asistente administrativo/Logística</h4>
-                        <!-- RELLENA CON LAS FECHAS -->
                         <span class="item-date">Ago 2024 - May 2025</span>
                     </div>
-                    <!-- RELLENA CON LA EMPRESA -->
                     <h5 class="item-subtitle">Inversiones Aconcagua - RM de Santiago, Chile</h5>
                     <p class="item-desc">
                         Gestión integral de la cadena logística, control de facturación y auditoría de procesos. Responsable de la resolución de incidencias operativas bajo presión, garantizando la satisfacción del cliente y la optimización de los recursos internos de la empresa.
                     </p>
                 </div>
 
-                <!-- TRABAJO 2 (Si tienes otro, si no lo tienes, borra este bloque entero) -->
                 <div class="timeline-item">
                     <div class="item-header">
-                        <!-- RELLENA CON TU CARGO EXACTO -->
                         <h4 class="item-title">Encargado de Operaciones</h4>
-                        <!-- RELLENA CON LAS FECHAS -->
                         <span class="item-date">Dic 2023 - Jul 2024</span>
                     </div>
-                    <!-- RELLENA CON LA EMPRESA -->
                     <h5 class="item-subtitle">Buganvilla Café, RM de Santiago, Chile</h5>
                     <p class="item-desc">
                         Atención al cliente, soporte administrativo y resolución rápida de problemas estructurales en el flujo de trabajo diario.
                     </p>
                 </div>
+
                 <div class="timeline-item">
                     <div class="item-header">
-                        <!-- RELLENA CON TU CARGO EXACTO -->
                         <h4 class="item-title">Soporte administrativo y teleoperador</h4>
-                        <!-- RELLENA CON LAS FECHAS -->
                         <span class="item-date">Sept 2021 - Ago 2023</span>
                     </div>
-                    <!-- RELLENA CON LA EMPRESA -->
                     <h5 class="item-subtitle">Florería Floramour, RM de Santiago, Chile</h5>
                     <p class="item-desc">
-                        Digitalización y tramitación de facturas y órdenes de compra.
-Gestión telefónica y vía email de pedidos y atención post-venta.
+                        Digitalización y tramitación de facturas y órdenes de compra. Gestión telefónica y vía email de pedidos y atención post-venta.
                     </p>
                 </div>
-                
             </section>
 
         </main>
